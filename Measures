@@ -1,0 +1,39 @@
+Creating Custom Labels Above Bars in Bar Chart
+
+Step 1: Create Placeholder Measure
+
+First, create a measure named Placeholder with a value of 0.
+Add this measure to Legends and turn them off.
+Proceed to data labels, select Apply settings to "Placeholder," and then turn them off too.
+
+Step 2: Turn On Custom Labels
+Navigate to the VALUES tab and turn on the custom Label option.
+
+Step 3: Define Labels Measure
+
+Next, create another measure named Labels Bar Chart.
+Utilize the following code:
+DAX
+Labels Bar Chart = 
+VAR _ItemName =
+    SUBSTITUTE(
+        (SELECTEDVALUE(GACTT_RESULTS_ANONYMIZED_v2[Ethnicity/Race])),
+        "|", 
+        ""
+    )
+VAR _VALUE = [Ethnicity Race Count]
+VAR _LABEL = _ItemName  & " | " & _VALUE
+RETURN
+_LABEL
+
+Final Touches
+
+Insert the Labels Bar Chart measure into Custom Values.
+Edit the labels as desired to tailor them to your specific needs.
+Conclusion
+By following these steps, you'll successfully align custom labels above the bars in your bar chart. Don't forget to tweak and customize the labels according to your preferences. 
+Good luck with your data visualization endeavors!
+
+
+
+
